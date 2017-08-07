@@ -3,7 +3,7 @@ class Mutations::SignInUser < GraphQL::Function
 
   type Types::AuthenticateType
 
-  def call(_obj, args, _ctx)
+  def call(obj, args, ctx)
     input = args[:email]
     return unless input
 
