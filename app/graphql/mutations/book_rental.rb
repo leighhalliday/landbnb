@@ -21,6 +21,8 @@ class Mutations::BookRental < GraphQL::Function
     )
 
     booking
+  rescue ActiveRecord::RecordNotFound => e
+    GraphQL::ExecutionError.new("No Rental with ID #{args[:rental_id]} found.")
   rescue ActiveRecord::RecordInvalid => e
     GraphQL::ExecutionError.new("Invalid input: #{e.record.errors.full_messages.join(', ')}")
   end
