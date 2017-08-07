@@ -35,6 +35,8 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'graphql', '~> 1.6', '>= 1.6.6'
 gem 'bcrypt', '~> 3.1', '>= 3.1.11'
+gem 'graphql-batch', '~> 0.3.3'
+gem 'graphql-preload', '~> 1.0', '>= 1.0.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

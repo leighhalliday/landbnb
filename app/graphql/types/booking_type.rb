@@ -8,6 +8,11 @@ Types::BookingType = GraphQL::ObjectType.define do
   field :review_comments, types.String
   field :reviewed_at, types.String
 
-  field :rental, -> { Types::RentalType }
-  field :user, -> { Types::UserType }
+  field :rental, Types::RentalType do
+    preload :rental
+    resolve -> (obj, args, context) { obj.rental }
+  end
+  field :user, Types::UserType do
+    resolve -> (obj, args, context) { RecordLoader.for(User).load(obj.user_id) }
+  end
 end
