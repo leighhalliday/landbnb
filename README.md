@@ -1,24 +1,23 @@
-# README
+# Landbnb
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is an example Rails application which implements a GraphQL API.
 
-Things you may want to cover:
+## Installation
 
-* Ruby version
+After cloning the repository, run the following commands:
+- `bundle install`
+- `bundle exec rails db:create`
+- `bundle exec rails db:migrate`
+- `bundle exec rake db:seed`
 
-* System dependencies
+The last command will provide you with some sample data to play around with.
 
-* Configuration
+## Development
 
-* Database creation
+Start the Rails app with `rails server` and you can visit http://localhost:3000/graphiql to explore the API locally.
 
-* Database initialization
+## Requests requiring authentication
 
-* How to run the test suite
+Both the `createUser` and `signInUser` mutations return a `token` field. This is a JWT token which should be submitted in all subsequent requests in the format:
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+`Authentication: bearer TOKEN_HERE`
