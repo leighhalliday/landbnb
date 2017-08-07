@@ -1,4 +1,6 @@
 LandbnbSchema = GraphQL::Schema.define do
-  mutation(Types::MutationType)
+  max_depth 4
+
+  # mutation(Types::MutationType)
   query(Types::QueryType)
 end
