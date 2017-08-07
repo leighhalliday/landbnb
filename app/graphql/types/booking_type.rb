@@ -13,6 +13,7 @@ Types::BookingType = GraphQL::ObjectType.define do
     resolve -> (obj, args, context) { obj.rental }
   end
   field :guest, Types::UserType do
-    resolve -> (obj, args, context) { RecordLoader.for(User).load(obj.user_id) }
+    preload :user
+    resolve -> (obj, args, context) { obj.user }
   end
 end
