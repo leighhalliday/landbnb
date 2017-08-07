@@ -4,14 +4,20 @@ class GraphqlController < ApplicationController
     query = params[:query]
     operation_name = params[:operationName]
     context = {
-      # Query context goes here, for example:
-      # current_user: current_user,
+      current_user: current_user
     }
     result = LandbnbSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
   end
 
   private
+
+  def current_user
+    return nil if headers[:authorization].blank?
+    token_match = headers[:authorization].match /^Bearer (?<token>.*)$/
+    return nil if token_match.blank?
+    AuthToken.verify(token_match[:token])
+  end
 
   # Handle form data, JSON body, or a blank value
   def ensure_hash(ambiguous_param)
