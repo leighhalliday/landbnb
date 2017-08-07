@@ -1,4 +1,6 @@
 class GraphqlController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def execute
     variables = ensure_hash(params[:variables])
     query = params[:query]
@@ -13,10 +15,10 @@ class GraphqlController < ApplicationController
   private
 
   def current_user
-    return nil if headers[:authorization].blank?
-    token_match = headers[:authorization].match /^Bearer (?<token>.*)$/
-    return nil if token_match.blank?
-    AuthToken.verify(token_match[:token])
+    return nil if request.headers['Authorization'].blank?
+    token = request.headers['Authorization'].split(' ').last
+    return nil if token.blank?
+    AuthToken.verify(token)
   end
 
   # Handle form data, JSON body, or a blank value
