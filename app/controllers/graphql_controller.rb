@@ -8,6 +8,11 @@ class GraphqlController < ApplicationController
     context = {
       current_user: current_user
     }
+    if ENV['OPTICS_API_KEY']
+      context.merge!(
+        optics_agent: request.env[:optics_agent].with_document(query)
+      )
+    end
     result = LandbnbSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
   end

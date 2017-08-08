@@ -36,6 +36,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'graphql', '~> 1.6', '>= 1.6.6'
 gem 'graphql-batch', '~> 0.3.3'
 gem 'graphql-preload', '~> 1.0', '>= 1.0.3'
+gem 'optics-agent'
 
 gem 'bcrypt', '~> 3.1', '>= 3.1.11'
 gem 'json_web_token', '~> 0.3.5'
