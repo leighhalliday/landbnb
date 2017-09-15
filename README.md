@@ -12,6 +12,12 @@ After cloning the repository, run the following commands:
 
 The last command will provide you with some sample data to play around with.
 
+You also need to create a `.env` file in the root of the project that contains a `JWT_TOKEN` entry for your user.
+- Create a `.env` file in the root of the project.
+- `rails console`
+- `AuthToken.token(User.last)`
+- Use the token that is output and create a `JWT_TOKEN` entry in the `.env` file.
+
 ## Development
 
 Start the Rails app with `rails server` and you can visit http://localhost:3000/graphiql to explore the API locally.
